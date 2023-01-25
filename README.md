@@ -1,1 +1,1 @@
-Typescript + Tailwind CSS + Redux Toolkit + Navigation
+# Typescript + Tailwind CSS + Redux Toolkit + Navigation

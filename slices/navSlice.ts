@@ -4,14 +4,26 @@ import type { RootState } from '../store';
 
 // Define a type for the slice state
 interface NavigationState {
-  origin: null;
+  origin: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+    description: string;
+  };
   destination: null;
   travelTimeInformation: null;
 }
 
 //1) Defining the initial state using that type
 const initialState: NavigationState = {
-  origin: null,
+  origin: {
+    location: {
+      lat: 0,
+      lng: 0,
+    },
+    description: '',
+  },
   destination: null,
   travelTimeInformation: null,
 };
