@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native';
+import 'react-native-gesture-handler';
+import { KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
 import { store } from './store';
@@ -10,32 +11,38 @@ import MapScreen from './screens/MapScreen';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
+    //from REDUX
     <Provider store={store}>
+      {/* from react-navigation npm */}
       <NavigationContainer>
+        {/* from react-native-elements npm */}
         <SafeAreaProvider>
-          <Stack.Navigator>
-            <Stack.Screen
-              name='HomeScreen'
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='MapScreen'
-              component={MapScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
+          {/*  */}
+          <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? -64 : 0}
+          >
+            <Stack.Navigator
+              screenOptions={{
+                gestureEnabled: true,
+                gestureDirection: 'horizontal',
+              }}
+            >
+              <Stack.Screen
+                name='HomeScreen'
+                component={HomeScreen}
+                options={{ headerShown: false, gestureDirection: 'horizontal' }}
+              />
+              <Stack.Screen
+                name='MapScreen'
+                component={MapScreen}
+                options={{ headerShown: false, gestureDirection: 'horizontal' }}
+              />
+            </Stack.Navigator>
+          </KeyboardAvoidingView>
         </SafeAreaProvider>
       </NavigationContainer>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

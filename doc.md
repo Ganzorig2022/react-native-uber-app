@@ -87,3 +87,11 @@ npm i react-native-google-places-autocomplete
 ```bash
 npm install react-native-maps
 ```
+
+## React-native-maps-directions
+
+> https://www.npmjs.com/package/react-native-maps-directions
+
+```bash
+npm install react-native-maps-directions
+```

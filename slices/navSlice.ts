@@ -11,7 +11,13 @@ interface NavigationState {
     };
     description: string;
   };
-  destination: null;
+  destination: {
+    description: string;
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
   travelTimeInformation: null;
 }
 
@@ -24,7 +30,13 @@ const initialState: NavigationState = {
     },
     description: '',
   },
-  destination: null,
+  destination: {
+    description: '',
+    location: {
+      lat: 0,
+      lng: 0,
+    },
+  },
   travelTimeInformation: null,
 };
 

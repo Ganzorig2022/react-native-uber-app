@@ -6,6 +6,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice';
+import NavFavourites from '../components/NavFavourites';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -17,11 +18,12 @@ const HomeScreen = () => {
           source={{ uri: 'https://links.papareact.com/gzs' }}
           style={{ width: 100, height: 100, resizeMode: 'contain' }}
         />
+        {/* ======GOOGLE PLACES SEARCH====== */}
         <GooglePlacesAutocomplete
           placeholder='Where from?'
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
-            //storing the "longitude, latitude" to REDUX store
+            //1) storing the "longitude, latitude" to REDUX store
             dispatch(
               setOrigin({
                 location: details?.geometry.location,
@@ -41,17 +43,11 @@ const HomeScreen = () => {
           }}
           styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
         />
-
         <NavOptions />
+        <NavFavourites />
       </View>
     </SafeAreaView>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  text: {
-    color: 'red',
-  },
-});
